@@ -1,7 +1,7 @@
 nom,description,prix,image,categorie,vedette
-Bouquet de roses,"Douze roses, emballage kraft et ruban de satin.",35,https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800&q=80,Bouquets,oui
-Bouquet champêtre,"Mélange de fleurs de saison aux couleurs douces.",28,https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80,Bouquets,non
-Composition blanche,"Élégance tout en blanc pour un intérieur ou une table.",45,https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=800&q=80,Compositions,oui
-Bouquet de mariée,"Le bouquet des grands jours, discuté ensemble à l'atelier.",89,https://images.unsplash.com/photo-1520763185298-1b434c919102?w=800&q=80,Mariage,non
-Roses romantiques,"Un classique intemporel, parfait pour dire merci.",32,https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80,Bouquets,non
-Plante verte en pot,"Une plante facile à vivre pour égayer un bureau ou un salon.",18,https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=80,Plantes,non
+Bouquet de roses,"Douze roses, emballage kraft et ruban de satin.",35,images/bouquet-roses.jpg,Bouquets,oui
+Bouquet champêtre,"Mélange de fleurs de saison aux couleurs douces.",28,images/bouquet-champetre.jpg,Bouquets,non
+Composition blanche,"Élégance tout en blanc pour un intérieur ou une table.",45,images/composition-blanche.jpg,Compositions,oui
+Bouquet de mariée,"Le bouquet des grands jours, discuté ensemble à l'atelier.",89,images/bouquet-mariee.jpg,Mariage,non
+Roses romantiques,"Un classique intemporel, parfait pour dire merci.",32,images/roses-romantiques.jpg,Bouquets,non
+Plante verte en pot,"Une plante facile à vivre pour égayer un bureau ou un salon.",18,images/plante-verte.jpg,Plantes,non

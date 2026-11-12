@@ -73,7 +73,7 @@ h1, h2, h3, .logo {
 .hero {
   background:
     linear-gradient(rgba(250, 246, 240, 0.88), rgba(250, 246, 240, 0.82)),
-    url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1600&q=80') center/cover no-repeat;
+    url('../images/hero.jpg') center/cover no-repeat;
   padding: 110px 0 120px;
   text-align: center;
 }

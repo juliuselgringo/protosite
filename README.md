@@ -24,7 +24,7 @@ démonstration (`js/data-exemple.js`) et un bandeau l'indique en bas de page.
    message_creations, horaires, adresse, telephone, email, message_footer)
 3. Onglet 2 nommé **Produits** : importer `modele/Produits.csv`
    (colonnes `nom,description,prix,image,categorie,vedette` — `vedette` = `oui`/`non`,
-   `prix` accepte `12,50` ou `12.50`)
+   `prix` accepte `12,50` ou `12.50`, `image` = nom du fichier photo, ex. `bouquet-roses.jpg`)
 4. Ajoutez/modifiez/supprimez des lignes à volonté : ce sont vos créations.
 
 ## 3. Publier la feuille sur le web
@@ -47,7 +47,24 @@ démonstration (`js/data-exemple.js`) et un bandeau l'indique en bas de page.
 - Les changements apparaissent au rechargement de la page (la publication Google
   peut mettre quelques minutes à se rafraîchir côté serveur).
 
-## 5. Héberger gratuitement sur GitHub Pages
+## 5. Les photos : dossier `images/` local (gratuit, aucun cloud)
+
+Pour garder la main sur les photos, déposez-les dans le dossier `images/` du
+dépôt (créé avec des photos d'exemple — voir `images/LISEZMOI.txt`). GitHub
+Pages sert ces fichiers gratuitement, comme le reste du site : **aucun
+abonnement cloud** (Drive, Dropbox…) n'est nécessaire.
+
+Dans la feuille, onglet `Produits`, colonne `image`, mettez au choix :
+
+- `bouquet-roses.jpg` — juste le nom du fichier (le dossier `images/` est ajouté automatiquement)
+- `images/bouquet-roses.jpg` — chemin explicite
+- `https://...` — une URL externe (ex. Unsplash, gratuit) fonctionne aussi
+
+Conseils : JPG compressés de moins de 500 Ko (via https://squoosh.app), noms
+sans espaces ni accents. Pour publier de nouvelles photos sur GitHub Pages :
+`git add . && git commit && git push`.
+
+## 6. Héberger gratuitement sur GitHub Pages
 
 Oui — le site est 100 % statique, GitHub Pages suffit (gratuit, HTTPS automatique,
 aucun serveur à gérer).
@@ -87,5 +104,6 @@ feuille, elles, changent indépendamment, sans aucun push.
 ├── js/csv.js             parseur CSV + formatage des prix
 ├── js/data-exemple.js    données de secours si la feuille n'est pas branchée
 ├── js/app.js             chargement de la feuille + rendu
+├── images/               vos photos (servies gratuitement, ex. images/bouquet-roses.jpg)
 └── modele/               CSV modèles à importer dans Google Sheets
 ```

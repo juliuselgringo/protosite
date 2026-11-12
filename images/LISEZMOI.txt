@@ -1,0 +1,21 @@
+DOSSIER PHOTOS DU SITE
+=====================
+
+Déposez vos photos directement dans ce dossier (images/).
+
+Dans la feuille Google Sheets, onglet "Produits", colonne "image",
+mettez au choix :
+
+    bouquet-roses.jpg            (juste le nom du fichier)
+    images/bouquet-roses.jpg     (chemin explicite)
+    https://...                  (URL externe, toujours accepté)
+
+Conseils :
+- exportez vos photos en JPG compressé, moins de 500 Ko chacune
+  (par exemple via https://squoosh.app)
+- nommage simple, sans espaces ni accents : bouquet-roses.jpg
+- pour publier une nouvelle photo sur le site (GitHub Pages) :
+      git add . && git commit && git push
+
+Les photos d'exemple actuelles viennent d'Unsplash (gratuit) et peuvent
+être remplacées par les vôtres.

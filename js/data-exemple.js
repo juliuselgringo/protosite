@@ -23,7 +23,7 @@ const DATA_EXEMPLE = {
       nom: 'Bouquet de roses',
       description: 'Douze roses, emballage kraft et ruban de satin.',
       prix: 35,
-      image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=800&q=80',
+      image: 'images/bouquet-roses.jpg',
       categorie: 'Bouquets',
       vedette: true
     },
@@ -31,7 +31,7 @@ const DATA_EXEMPLE = {
       nom: 'Bouquet champêtre',
       description: 'Mélange de fleurs de saison aux couleurs douces.',
       prix: 28,
-      image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80',
+      image: 'images/bouquet-champetre.jpg',
       categorie: 'Bouquets',
       vedette: false
     },
@@ -39,7 +39,7 @@ const DATA_EXEMPLE = {
       nom: 'Composition blanche',
       description: 'Élégance tout en blanc pour un intérieur ou une table.',
       prix: 45,
-      image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=800&q=80',
+      image: 'images/composition-blanche.jpg',
       categorie: 'Compositions',
       vedette: true
     },
@@ -47,7 +47,7 @@ const DATA_EXEMPLE = {
       nom: 'Bouquet de mariée',
       description: 'Le bouquet des grands jours, discuté ensemble à l\'atelier.',
       prix: 89,
-      image: 'https://images.unsplash.com/photo-1520763185298-1b434c919102?w=800&q=80',
+      image: 'images/bouquet-mariee.jpg',
       categorie: 'Mariage',
       vedette: false
     },
@@ -55,7 +55,7 @@ const DATA_EXEMPLE = {
       nom: 'Roses romantiques',
       description: 'Un classique intemporel, parfait pour dire merci.',
       prix: 32,
-      image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=800&q=80',
+      image: 'images/roses-romantiques.jpg',
       categorie: 'Bouquets',
       vedette: false
     },
@@ -63,7 +63,7 @@ const DATA_EXEMPLE = {
       nom: 'Plante verte en pot',
       description: 'Une plante facile à vivre pour égayer un bureau ou un salon.',
       prix: 18,
-      image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=80',
+      image: 'images/plante-verte.jpg',
       categorie: 'Plantes',
       vedette: false
     }

@@ -52,6 +52,18 @@ async function chargerConfig() {
   return config;
 }
 
+// Normalise le champ image de la feuille :
+// - URL absolue ("https://...") -> conservée telle quelle
+// - chemin relatif explicite ("images/x.jpg") -> conservé
+// - simple nom de fichier ("x.jpg") -> "images/x.jpg"
+function normaliserImage(valeur) {
+  const s = String(valeur || '').trim();
+  if (!s) return '';
+  if (/^https?:\/\//i.test(s)) return s;
+  if (s.includes('/')) return s;
+  return 'images/' + s;
+}
+
 // Onglet "Produits" : une ligne = une création.
 // Colonnes attendues : nom, description, prix, image, categorie, vedette
 async function chargerProduits() {
@@ -62,7 +74,7 @@ async function chargerProduits() {
       nom: p.nom,
       description: p.description || '',
       prix: parsePrix(p.prix),
-      image: p.image || '',
+      image: normaliserImage(p.image),
       categorie: p.categorie || 'Divers',
       vedette: (p.vedette || '').toLowerCase() === 'oui'
     }));
