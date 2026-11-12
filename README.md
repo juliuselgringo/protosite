@@ -34,9 +34,11 @@ démonstration (`js/data-exemple.js`) et un bandeau l'indique en bas de page.
    (pour avoir les deux onglets) — sinon publiez chaque onglet séparément.
 3. Cliquez sur **Publier**, puis copiez l'URL obtenue.
 4. Dans `js/config.js` (le seul fichier à modifier) :
-   - collez la partie `/d/e/XXXXXXX` de l'URL dans `idPublie`
-   - renseignez le `gid` de chaque onglet dans `onglets` (dans l'URL de la
-     feuille, cliquez sur l'onglet : le `#gid=NNN` affiché donne la valeur)
+   - dans `idPublie`, collez **uniquement la partie `XXXXXXX`** entre `/d/e/` et
+     `/pub` de l'URL publiée — pas l'URL entière
+   - dans `onglets`, mettez **uniquement le nombre `NNN`** après `#gid=` (dans
+     l'URL de la feuille, cliquez sur l'onglet : le `#gid=NNN` affiché donne
+     la valeur)
 
 ## 4. Modifier le site sans toucher au code
 

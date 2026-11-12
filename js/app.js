@@ -6,19 +6,33 @@
 //    on retombe sur les données de démonstration.
 // ============================================================
 
+// Extrait l'ID publié d'une valeur qui peut être l'ID seul ("2PACX-...")
+// ou l'URL de publication complète ("https://docs.google.com/.../d/e/2PACX-.../pub...").
+function normaliserIdPublie(valeur) {
+  const brut = String(valeur || '').trim();
+  const m = brut.match(/\/d\/e\/([^/?#]+)/);
+  return m ? m[1] : brut;
+}
+
+// Extrait le gid d'une valeur qui peut être "123456", "gid=123456" ou "#gid=123456".
+function normaliserGid(valeur) {
+  const brut = String(valeur || '');
+  const m = brut.match(/gid=(\d+)/);
+  return m ? m[1] : brut.replace(/\D/g, '');
+}
+
 // Construit l'URL CSV d'un onglet à partir de la configuration.
 function urlOnglet(nomOnglet) {
   if (SHEET.url && SHEET.url[nomOnglet]) return SHEET.url[nomOnglet];
-  const gid = SHEET.onglets[nomOnglet];
-  return 'https://docs.google.com/spreadsheets/d/e/' + SHEET.idPublie +
+  const gid = normaliserGid(SHEET.onglets[nomOnglet]);
+  return 'https://docs.google.com/spreadsheets/d/e/' + normaliserIdPublie(SHEET.idPublie) +
          '/pub?gid=' + gid + '&single=true&output=csv';
 }
 
 // La feuille est considérée comme branchée si un vrai ID est renseigné.
 function feuilleBranchee() {
-  return typeof SHEET.idPublie === 'string' &&
-         SHEET.idPublie !== '' &&
-         SHEET.idPublie.indexOf('COLLEZ') === -1;
+  const id = normaliserIdPublie(SHEET.idPublie);
+  return id !== '' && id.indexOf('COLLEZ') === -1;
 }
 
 async function chargerTexte(url) {
