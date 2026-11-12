@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fleuriste — prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#accueil" data-config="nom_boutique">Fleuriste</a>
+      <nav class="main-nav">
+        <a href="#creations">Créations</a>
+        <a href="#services">Services</a>
+        <a href="#infos">Infos pratiques</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="accueil">
+    <div class="container hero-inner">
+      <h1 data-config="message_accueil">Bienvenue chez votre fleuriste</h1>
+      <p class="hero-sub" data-config="sous_titre">Des bouquets et des compositions préparés chaque matin.</p>
+      <a class="btn" href="#creations">Découvrir nos créations</a>
+    </div>
+  </section>
+
+  <section class="section" id="creations">
+    <div class="container">
+      <h2>Nos créations</h2>
+      <p class="section-sub" data-config="message_creations"></p>
+      <div class="filters" id="filters"></div>
+      <div class="grid" id="produits"></div>
+      <p class="empty" id="produits-vide" hidden>Aucune création pour le moment — revenez bientôt.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <h2>Nos services</h2>
+      <div class="grid grid-3">
+        <article class="card service">
+          <h3>Bouquets sur mesure</h3>
+          <p>Décrivez-nous l'occasion et les couleurs aimées, nous composons le bouquet idéal.</p>
+        </article>
+        <article class="card service">
+          <h3>Livraison à domicile</h3>
+          <p>Nous livrons vos fleurs dans la journée, avec un petit mot si vous le souhaitez.</p>
+        </article>
+        <article class="card service">
+          <h3>Abonnement mensuel</h3>
+          <p>Un bouquet de saison livré chez vous chaque mois, sans engagement.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="infos">
+    <div class="container">
+      <h2>Infos pratiques</h2>
+      <div class="grid grid-3 infos-grid">
+        <div class="card info">
+          <h3>Horaires</h3>
+          <p class="pre-line" data-config="horaires"></p>
+        </div>
+        <div class="card info">
+          <h3>Adresse</h3>
+          <p class="pre-line" data-config="adresse"></p>
+        </div>
+        <div class="card info">
+          <h3>Contact</h3>
+          <p class="pre-line"><span data-config="telephone"></span><br><span data-config="email"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p data-config="message_footer"></p>
+      <p class="demo-badge" id="demo-badge" hidden>Mode démonstration : données locales (Google Sheets non branché — voir README.md)</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/data-exemple.js"></script>
+  <script src="js/csv.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
