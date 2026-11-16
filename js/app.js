@@ -53,12 +53,18 @@ async function chargerConfig() {
 }
 
 // Normalise le champ image de la feuille :
-// - URL absolue ("https://...") -> conservée telle quelle
+// - lien de partage Google Drive (".../file/d/ID/view", "open?id=ID", "uc?...id=ID")
+//   -> converti en URL directe "uc?export=download&id=ID" qui sert l'image brute
+// - autre URL absolue ("https://...") -> conservée telle quelle
 // - chemin relatif explicite ("images/x.jpg") -> conservé
 // - simple nom de fichier ("x.jpg") -> "images/x.jpg"
 function normaliserImage(valeur) {
   const s = String(valeur || '').trim();
   if (!s) return '';
+  if (/drive\.google\.com/i.test(s) || /drive\.usercontent\.google\.com/i.test(s)) {
+    const m = s.match(/\/file\/d\/([^/?&]+)/) || s.match(/[?&]id=([^&]+)/);
+    if (m) return 'https://drive.google.com/uc?export=download&id=' + m[1];
+  }
   if (/^https?:\/\//i.test(s)) return s;
   if (s.includes('/')) return s;
   return 'images/' + s;

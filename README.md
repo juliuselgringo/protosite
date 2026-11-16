@@ -58,7 +58,23 @@ Dans la feuille, onglet `Produits`, colonne `image`, mettez au choix :
 
 - `bouquet-roses.jpg` — juste le nom du fichier (le dossier `images/` est ajouté automatiquement)
 - `images/bouquet-roses.jpg` — chemin explicite
-- `https://...` — une URL externe (ex. Unsplash, gratuit) fonctionne aussi
+- un lien de partage **Google Drive** (`https://drive.google.com/file/d/.../view...`) — converti automatiquement en URL directe
+- `https://...` — toute autre URL directe (ex. Unsplash, gratuit)
+
+### Option Google Drive (sans toucher au dépôt)
+
+1. Dans Drive : clic droit sur la photo → **Partager** → « Tous les utilisateurs
+   disposant du lien » (Lecteur) → copier le lien. Sans ce partage, Google
+   exige une identification et l'image ne s'affiche pas (c'est le lien `/view`
+   qui renvoie une page HTML, pas l'image).
+2. Collez ce lien tel quel dans la colonne `image` de la feuille : le code
+   (`normaliserImage` dans `js/app.js`) le transforme en
+   `https://drive.google.com/uc?export=download&id=...`, qui renvoie l'image
+   brute (vérifié : `Content-Type: image/jpeg`).
+
+Limites de Drive : si le partage est retiré ou si le fichier est supprimé ou
+déplacé, l'image cassera ; Drive peut aussi limiter le débit en cas de fort
+trafic. Pour un site définitif, le dossier `images/` reste le plus fiable.
 
 Conseils : JPG compressés de moins de 500 Ko (via https://squoosh.app), noms
 sans espaces ni accents. Pour publier de nouvelles photos sur GitHub Pages :

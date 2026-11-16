@@ -1,21 +1,28 @@
 DOSSIER PHOTOS DU SITE
 =====================
 
-Déposez vos photos directement dans ce dossier (images/).
+Option 1 (recommandée) : déposez vos photos directement dans ce dossier.
 
 Dans la feuille Google Sheets, onglet "Produits", colonne "image",
 mettez au choix :
 
     bouquet-roses.jpg            (juste le nom du fichier)
     images/bouquet-roses.jpg     (chemin explicite)
-    https://...                  (URL externe, toujours accepté)
+
+Option 2 : lien Google Drive. Partagez la photo dans Drive
+("Tous les utilisateurs disposant du lien", rôle Lecteur), copiez le lien
+de partage (https://drive.google.com/file/d/.../view...) et collez-le tel quel
+dans la colonne "image" : le site le convertit automatiquement en URL directe.
+
+Toute autre URL directe (https://...) fonctionne aussi.
 
 Conseils :
 - exportez vos photos en JPG compressé, moins de 500 Ko chacune
   (par exemple via https://squoosh.app)
 - nommage simple, sans espaces ni accents : bouquet-roses.jpg
-- pour publier une nouvelle photo sur le site (GitHub Pages) :
+- pour publier une nouvelle photo du dossier images/ sur le site :
       git add . && git commit && git push
+  (ou bien, sans git : sur github.com, dans le dépôt, "Add file > Upload files")
 
 Les photos d'exemple actuelles viennent d'Unsplash (gratuit) et peuvent
 être remplacées par les vôtres.
