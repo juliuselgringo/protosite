@@ -76,6 +76,18 @@ Limites de Drive : si le partage est retiré ou si le fichier est supprimé ou
 déplacé, l'image cassera ; Drive peut aussi limiter le débit en cas de fort
 trafic. Pour un site définitif, le dossier `images/` reste le plus fiable.
 
+### Si Chrome affiche un 403 sur l'URL `uc?export=download&id=...`
+
+Le fichier est atteignable mais le navigateur est refusé. Causes fréquentes :
+
+- le fichier n'était **pas encore partagé** « Tous les utilisateurs disposant
+  du lien » au moment du test → refaire le partage, puis tester l'URL `uc`
+  dans une **fenêtre de navigation privée** (sans session Google connectée)
+- **quota Drive** dépassé (« trop de téléchargements récents » sur ce fichier)
+  → 403 transitoire qui retombe tout seul en quelques heures ; en attendant,
+  le site réessaie automatiquement via l'endpoint `thumbnail` de Drive
+  (repli implémenté dans `creerCarteProduit`)
+
 Conseils : JPG compressés de moins de 500 Ko (via https://squoosh.app), noms
 sans espaces ni accents. Pour publier de nouvelles photos sur GitHub Pages :
 `git add . && git commit && git push`.

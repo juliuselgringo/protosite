@@ -12,7 +12,11 @@ mettez au choix :
 Option 2 : lien Google Drive. Partagez la photo dans Drive
 ("Tous les utilisateurs disposant du lien", rôle Lecteur), copiez le lien
 de partage (https://drive.google.com/file/d/.../view...) et collez-le tel quel
-dans la colonne "image" : le site le convertit automatiquement en URL directe.
+dans la colonne "image" : le site le convertit automatiquement en URL directe
+(uc?export=download). Si Google refuse (403 : partage pas encore actif ou quota
+Drive temporaire), le site réessaie tout seul via l'URL "thumbnail" de Drive.
+Astuce : pour vérifier qu'une photo Drive est bien publique, ouvrez son URL
+uc?export=download dans une fenêtre de navigation privée.
 
 Toute autre URL directe (https://...) fonctionne aussi.
 

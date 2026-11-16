@@ -111,7 +111,17 @@ function creerCarteProduit(p) {
     img.src = p.image;
     img.alt = p.nom;
     img.loading = 'lazy';
-    img.onerror = () => { img.remove(); };
+    img.onerror = () => {
+      // Repli : si l'URL directe Drive (uc?export=download) est refusée
+      // (403 quota/partage), on réessaie via l'endpoint thumbnail de Drive.
+      const m = p.image.match(/drive\.google\.com\/uc\?export=download&id=([^&]+)/);
+      if (m && !img.dataset.repli) {
+        img.dataset.repli = '1';
+        img.src = 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1600';
+      } else {
+        img.remove();
+      }
+    };
     visuel.appendChild(img);
   }
   if (p.vedette) {
