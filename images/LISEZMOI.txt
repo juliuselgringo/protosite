@@ -11,8 +11,7 @@ Option A — lien Google Drive (recommandé pour les photos de téléphone) :
   => Aucune compression à faire : le site demande à Google une version
      redimensionnée automatiquement (max 1600 px, ~300 Ko au lieu de 3 Mo).
      C'est le fonctionnement normal, il n'y a (quasiment) plus d'erreur 403.
-     Si la miniature est refusée, le site réessaie tout seul avec le fichier
-     brut, puis affiche un placeholder gris si tout échoue.
+     Si la miniature est refusée, un placeholder gris s'affiche à la place.
 
 Option B — dossier images/ de ce dépôt :
   déposez la photo ici et mettez son nom dans la colonne "image" :

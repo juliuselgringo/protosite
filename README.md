@@ -74,10 +74,10 @@ brut (`uc?export=download&id=...`, celui qui renvoie parfois un 403 « quota de
 téléchargements »), avec des limites bien plus larges : en pratique, **plus de
 403 en usage normal**.
 
-Le site demande d'abord la miniature ; si elle est refusée, il réessaie
-automatiquement avec le fichier brut ; si tout échoue, un placeholder gris
-s'affiche. **Le thumbnail est donc le fonctionnement par défaut** : plus
-besoin d'application de compression tierce.
+Le site demande la miniature ; si elle est refusée, un **placeholder gris**
+s'affiche à la place (pas de repli sur le fichier brut). **Le thumbnail est
+donc le fonctionnement par défaut** : plus besoin d'application de
+compression tierce.
 
 Deux conditions : la photo Drive doit rester partagée « tous les utilisateurs
 disposant du lien » (sinon Google exige une connexion et l'image ne

@@ -54,8 +54,8 @@ async function chargerConfig() {
 
 // Normalise le champ image de la feuille :
 // - lien de partage Google Drive (".../file/d/ID/view", "open?id=ID", "uc?...id=ID")
-//   -> converti en URL "thumbnail" (image redimensionnée, ~300 Ko, peu soumise
-//      au quota) ; l'URL "uc?export=download" (fichier brut) sert de repli
+//   -> converti en URL "thumbnail" (image redimensionnée à la volée, max 1600 px,
+//      ~300 Ko, peu soumise au quota) ; si elle échoue, c'est le placeholder gris
 // - autre URL absolue ("https://...") -> conservée telle quelle
 // - chemin relatif explicite ("images/x.jpg") -> conservé
 // - simple nom de fichier ("x.jpg") -> "images/x.jpg"
@@ -112,17 +112,9 @@ function creerCarteProduit(p) {
     img.src = p.image;
     img.alt = p.nom;
     img.loading = 'lazy';
-    img.onerror = () => {
-      // Repli : si l'URL thumbnail de Drive est refusée, on essaie l'URL
-      // directe "uc?export=download" (fichier brut, mais soumise au quota 403).
-      const m = p.image.match(/drive\.google\.com\/thumbnail\?id=([^&]+)/);
-      if (m && !img.dataset.repli) {
-        img.dataset.repli = '1';
-        img.src = 'https://drive.google.com/uc?export=download&id=' + m[1];
-      } else {
-        img.remove();
-      }
-    };
+    // Pas de repli sur le fichier brut : si l'image ne charge pas
+    // (thumbnail Drive refusé, fichier absent...), on affiche le placeholder.
+    img.onerror = () => { img.remove(); };
     visuel.appendChild(img);
   }
   if (p.vedette) {
