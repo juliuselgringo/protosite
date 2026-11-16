@@ -69,24 +69,27 @@ Dans la feuille, onglet `Produits`, colonne `image`, mettez au choix :
    qui renvoie une page HTML, pas l'image).
 2. Collez ce lien tel quel dans la colonne `image` de la feuille : le code
    (`normaliserImage` dans `js/app.js`) le transforme en
-   `https://drive.google.com/uc?export=download&id=...`, qui renvoie l'image
-   brute (vérifié : `Content-Type: image/jpeg`).
+   `https://drive.google.com/thumbnail?id=...&sz=w1600`, qui renvoie l'image
+   redimensionnée (~300 Ko, peu soumise au quota). Si cette URL est refusée,
+   le site réessaie avec `uc?export=download&id=...` (fichier brut, mais c'est
+   l'endpoint soumis au 403 « quota de téléchargements »).
 
 Limites de Drive : si le partage est retiré ou si le fichier est supprimé ou
 déplacé, l'image cassera ; Drive peut aussi limiter le débit en cas de fort
 trafic. Pour un site définitif, le dossier `images/` reste le plus fiable.
 
-### Si Chrome affiche un 403 sur l'URL `uc?export=download&id=...`
+### Si Chrome affiche un 403 sur une URL Drive
 
-Le fichier est atteignable mais le navigateur est refusé. Causes fréquentes :
+La photo s'affiche quand même grâce au repli automatique, le 403 dans
+l'inspecteur est alors un simple bruit de fond. Causes fréquentes :
 
+- **quota Drive** sur l'endpoint `uc?export=download` (« trop de téléchargements
+  récents » sur ce fichier, surtout avec des photos de plusieurs Mo) → 403
+  transitoire qui retombe en quelques heures ; c'est pourquoi l'URL principale
+  utilisée est désormais `thumbnail` (image allégée), avec `uc` en repli
 - le fichier n'était **pas encore partagé** « Tous les utilisateurs disposant
-  du lien » au moment du test → refaire le partage, puis tester l'URL `uc`
-  dans une **fenêtre de navigation privée** (sans session Google connectée)
-- **quota Drive** dépassé (« trop de téléchargements récents » sur ce fichier)
-  → 403 transitoire qui retombe tout seul en quelques heures ; en attendant,
-  le site réessaie automatiquement via l'endpoint `thumbnail` de Drive
-  (repli implémenté dans `creerCarteProduit`)
+  du lien » au moment du test → refaire le partage, puis tester l'URL dans une
+  **fenêtre de navigation privée** (sans session Google connectée)
 
 Conseils : JPG compressés de moins de 500 Ko (via https://squoosh.app), noms
 sans espaces ni accents. Pour publier de nouvelles photos sur GitHub Pages :

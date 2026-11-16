@@ -12,11 +12,13 @@ mettez au choix :
 Option 2 : lien Google Drive. Partagez la photo dans Drive
 ("Tous les utilisateurs disposant du lien", rôle Lecteur), copiez le lien
 de partage (https://drive.google.com/file/d/.../view...) et collez-le tel quel
-dans la colonne "image" : le site le convertit automatiquement en URL directe
-(uc?export=download). Si Google refuse (403 : partage pas encore actif ou quota
-Drive temporaire), le site réessaie tout seul via l'URL "thumbnail" de Drive.
+dans la colonne "image" : le site le convertit automatiquement en URL
+"thumbnail" (image redimensionnée à ~300 Ko). Si cette URL est refusée,
+il réessaie tout seul avec l'URL "uc?export=download" (fichier brut).
+Un éventuel 403 dans l'inspecteur Chrome sur l'URL uc est alors sans gravité :
+c'est le quota de téléchargements Drive, et la miniature a déjà pris le relais.
 Astuce : pour vérifier qu'une photo Drive est bien publique, ouvrez son URL
-uc?export=download dans une fenêtre de navigation privée.
+dans une fenêtre de navigation privée.
 
 Toute autre URL directe (https://...) fonctionne aussi.
 

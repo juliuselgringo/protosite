@@ -54,7 +54,8 @@ async function chargerConfig() {
 
 // Normalise le champ image de la feuille :
 // - lien de partage Google Drive (".../file/d/ID/view", "open?id=ID", "uc?...id=ID")
-//   -> converti en URL directe "uc?export=download&id=ID" qui sert l'image brute
+//   -> converti en URL "thumbnail" (image redimensionnée, ~300 Ko, peu soumise
+//      au quota) ; l'URL "uc?export=download" (fichier brut) sert de repli
 // - autre URL absolue ("https://...") -> conservée telle quelle
 // - chemin relatif explicite ("images/x.jpg") -> conservé
 // - simple nom de fichier ("x.jpg") -> "images/x.jpg"
@@ -63,7 +64,7 @@ function normaliserImage(valeur) {
   if (!s) return '';
   if (/drive\.google\.com/i.test(s) || /drive\.usercontent\.google\.com/i.test(s)) {
     const m = s.match(/\/file\/d\/([^/?&]+)/) || s.match(/[?&]id=([^&]+)/);
-    if (m) return 'https://drive.google.com/uc?export=download&id=' + m[1];
+    if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1600';
   }
   if (/^https?:\/\//i.test(s)) return s;
   if (s.includes('/')) return s;
@@ -112,12 +113,12 @@ function creerCarteProduit(p) {
     img.alt = p.nom;
     img.loading = 'lazy';
     img.onerror = () => {
-      // Repli : si l'URL directe Drive (uc?export=download) est refusée
-      // (403 quota/partage), on réessaie via l'endpoint thumbnail de Drive.
-      const m = p.image.match(/drive\.google\.com\/uc\?export=download&id=([^&]+)/);
+      // Repli : si l'URL thumbnail de Drive est refusée, on essaie l'URL
+      // directe "uc?export=download" (fichier brut, mais soumise au quota 403).
+      const m = p.image.match(/drive\.google\.com\/thumbnail\?id=([^&]+)/);
       if (m && !img.dataset.repli) {
         img.dataset.repli = '1';
-        img.src = 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w1600';
+        img.src = 'https://drive.google.com/uc?export=download&id=' + m[1];
       } else {
         img.remove();
       }
