@@ -1,34 +1,31 @@
 DOSSIER PHOTOS DU SITE
 =====================
 
-Option 1 (recommandée) : déposez vos photos directement dans ce dossier.
+Deux façons de mettre des photos, au choix dans la feuille Google Sheets
+(onglet "Produits", colonne "image") :
 
-Dans la feuille Google Sheets, onglet "Produits", colonne "image",
-mettez au choix :
+Option A — lien Google Drive (recommandé pour les photos de téléphone) :
+  partagez la photo dans Drive ("Tous les utilisateurs disposant du lien",
+  rôle Lecteur), copiez le lien de partage (https://drive.google.com/file/d/.../view...)
+  et collez-le tel quel dans la colonne "image".
+  => Aucune compression à faire : le site demande à Google une version
+     redimensionnée automatiquement (max 1600 px, ~300 Ko au lieu de 3 Mo).
+     C'est le fonctionnement normal, il n'y a (quasiment) plus d'erreur 403.
+     Si la miniature est refusée, le site réessaie tout seul avec le fichier
+     brut, puis affiche un placeholder gris si tout échoue.
 
-    bouquet-roses.jpg            (juste le nom du fichier)
-    images/bouquet-roses.jpg     (chemin explicite)
+Option B — dossier images/ de ce dépôt :
+  déposez la photo ici et mettez son nom dans la colonne "image" :
+      bouquet-roses.jpg            (ou images/bouquet-roses.jpg)
+  Le fichier est servi tel quel (poids d'origine). Pour publier :
+      git add . && git commit && git push
+  (ou sur github.com, dans le dépôt : "Add file > Upload files").
 
-Option 2 : lien Google Drive. Partagez la photo dans Drive
-("Tous les utilisateurs disposant du lien", rôle Lecteur), copiez le lien
-de partage (https://drive.google.com/file/d/.../view...) et collez-le tel quel
-dans la colonne "image" : le site le convertit automatiquement en URL
-"thumbnail" (image redimensionnée à ~300 Ko). Si cette URL est refusée,
-il réessaie tout seul avec l'URL "uc?export=download" (fichier brut).
-Un éventuel 403 dans l'inspecteur Chrome sur l'URL uc est alors sans gravité :
-c'est le quota de téléchargements Drive, et la miniature a déjà pris le relais.
+Toute URL directe (https://...) fonctionne aussi.
+
+Nommage conseillé : simple, sans espaces ni accents (bouquet-roses.jpg).
+
 Astuce : pour vérifier qu'une photo Drive est bien publique, ouvrez son URL
 dans une fenêtre de navigation privée.
 
-Toute autre URL directe (https://...) fonctionne aussi.
-
-Conseils :
-- exportez vos photos en JPG compressé, moins de 500 Ko chacune
-  (par exemple via https://squoosh.app)
-- nommage simple, sans espaces ni accents : bouquet-roses.jpg
-- pour publier une nouvelle photo du dossier images/ sur le site :
-      git add . && git commit && git push
-  (ou bien, sans git : sur github.com, dans le dépôt, "Add file > Upload files")
-
-Les photos d'exemple actuelles viennent d'Unsplash (gratuit) et peuvent
-être remplacées par les vôtres.
+Les photos d'exemple viennent d'Unsplash (gratuit) ; remplacez-les par les vôtres.

@@ -47,53 +47,44 @@ démonstration (`js/data-exemple.js`) et un bandeau l'indique en bas de page.
 - Les changements apparaissent au rechargement de la page (la publication Google
   peut mettre quelques minutes à se rafraîchir côté serveur).
 
-## 5. Les photos : dossier `images/` local (gratuit, aucun cloud)
+## 5. Les photos : lien Google Drive (recommandé) ou dossier `images/`
 
-Pour garder la main sur les photos, déposez-les dans le dossier `images/` du
-dépôt (créé avec des photos d'exemple — voir `images/LISEZMOI.txt`). GitHub
-Pages sert ces fichiers gratuitement, comme le reste du site : **aucun
-abonnement cloud** (Drive, Dropbox…) n'est nécessaire.
+Deux façons de renseigner la colonne `image` de l'onglet `Produits`, au choix :
 
-Dans la feuille, onglet `Produits`, colonne `image`, mettez au choix :
+**Option A — lien Google Drive (recommandé pour les photos de téléphone).**
+Clic droit sur la photo dans Drive → **Partager** → « Tous les utilisateurs
+disposant du lien » (Lecteur) → copier le lien → le coller tel quel dans la
+colonne `image` de la feuille. **Aucune compression à faire** : le site
+demande à Google une version redimensionnée automatiquement (voir ci-dessous).
 
-- `bouquet-roses.jpg` — juste le nom du fichier (le dossier `images/` est ajouté automatiquement)
-- `images/bouquet-roses.jpg` — chemin explicite
-- un lien de partage **Google Drive** (`https://drive.google.com/file/d/.../view...`) — converti automatiquement en URL directe
-- `https://...` — toute autre URL directe (ex. Unsplash, gratuit)
+**Option B — dossier `images/` du dépôt** (servi gratuitement par GitHub
+Pages, fichier tel quel) : déposez la photo dans `images/` et mettez
+`bouquet-roses.jpg` (ou `images/bouquet-roses.jpg`) dans la colonne `image`.
+Pour publier : `git add . && git commit && git push`, ou sur github.com
+« Add file > Upload files ». Toute URL directe `https://...` (ex. Unsplash,
+gratuit) fonctionne aussi.
 
-### Option Google Drive (sans toucher au dépôt)
+### La miniature (thumbnail), simplement
 
-1. Dans Drive : clic droit sur la photo → **Partager** → « Tous les utilisateurs
-   disposant du lien » (Lecteur) → copier le lien. Sans ce partage, Google
-   exige une identification et l'image ne s'affiche pas (c'est le lien `/view`
-   qui renvoie une page HTML, pas l'image).
-2. Collez ce lien tel quel dans la colonne `image` de la feuille : le code
-   (`normaliserImage` dans `js/app.js`) le transforme en
-   `https://drive.google.com/thumbnail?id=...&sz=w1600`, qui renvoie l'image
-   redimensionnée (~300 Ko, peu soumise au quota). Si cette URL est refusée,
-   le site réessaie avec `uc?export=download&id=...` (fichier brut, mais c'est
-   l'endpoint soumis au 403 « quota de téléchargements »).
+Une photo de téléphone fait souvent 3 Mo. Drive conserve l'original, et
+l'URL `https://drive.google.com/thumbnail?id=...&sz=w1600` demande à Google de
+servir une **version réduite générée à la volée** : max 1600 px de large, JPEG
+d'environ 300 Ko. C'est un service **différent** du téléchargement du fichier
+brut (`uc?export=download&id=...`, celui qui renvoie parfois un 403 « quota de
+téléchargements »), avec des limites bien plus larges : en pratique, **plus de
+403 en usage normal**.
 
-Limites de Drive : si le partage est retiré ou si le fichier est supprimé ou
-déplacé, l'image cassera ; Drive peut aussi limiter le débit en cas de fort
-trafic. Pour un site définitif, le dossier `images/` reste le plus fiable.
+Le site demande d'abord la miniature ; si elle est refusée, il réessaie
+automatiquement avec le fichier brut ; si tout échoue, un placeholder gris
+s'affiche. **Le thumbnail est donc le fonctionnement par défaut** : plus
+besoin d'application de compression tierce.
 
-### Si Chrome affiche un 403 sur une URL Drive
-
-La photo s'affiche quand même grâce au repli automatique, le 403 dans
-l'inspecteur est alors un simple bruit de fond. Causes fréquentes :
-
-- **quota Drive** sur l'endpoint `uc?export=download` (« trop de téléchargements
-  récents » sur ce fichier, surtout avec des photos de plusieurs Mo) → 403
-  transitoire qui retombe en quelques heures ; c'est pourquoi l'URL principale
-  utilisée est désormais `thumbnail` (image allégée), avec `uc` en repli
-- le fichier n'était **pas encore partagé** « Tous les utilisateurs disposant
-  du lien » au moment du test → refaire le partage, puis tester l'URL dans une
-  **fenêtre de navigation privée** (sans session Google connectée)
-
-Conseils : JPG compressés de moins de 500 Ko (via https://squoosh.app), noms
-sans espaces ni accents. Pour publier de nouvelles photos sur GitHub Pages :
-`git add . && git commit && git push`.
+Deux conditions : la photo Drive doit rester partagée « tous les utilisateurs
+disposant du lien » (sinon Google exige une connexion et l'image ne
+s'affiche pas — testez l'URL dans une fenêtre de navigation privée), et si le
+partage est retiré ou le fichier supprimé, l'image casse (repassez en partage,
+ou utilisez l'option B). La miniature est limitée à 1600 px de large — très
+suffisant pour une carte de site ; l'original reste disponible dans Drive.
 
 ## 6. Héberger gratuitement sur GitHub Pages
 
